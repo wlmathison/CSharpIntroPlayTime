@@ -24,7 +24,7 @@ namespace CSharpIntroPlayTime
             }
             else
             {
-                Console.WriteLine("You selected an invalid option. Please choose 'A' or 'B'");
+                Console.WriteLine("You selected an invalid option.");
             }
         }
 
