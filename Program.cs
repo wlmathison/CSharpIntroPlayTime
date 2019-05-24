@@ -18,13 +18,14 @@ namespace CSharpIntroPlayTime
             {
                 GroceryList();
             }
-            else  // change this to only call GuessingGame() when the user enters option "B"
+            else if (response == "B" || response == "b")
             {
                 GuessingGame();
             }
-
-            // If the user didn't input an "A" or "B" print a message 
-            //  telling them they selected an invalid option
+            else
+            {
+                Console.WriteLine("You selected an invalid option. Please choose 'A' or 'B'");
+            }
         }
 
         static void GroceryList()
@@ -38,7 +39,7 @@ namespace CSharpIntroPlayTime
             while (!string.IsNullOrWhiteSpace(input))
             {
                 groceries.Add(input);
-
+                input = Console.ReadLine();
                 // Ask for the input again
             }
 
@@ -46,6 +47,7 @@ namespace CSharpIntroPlayTime
             Console.WriteLine("Your grocery list:");
             foreach (string grocery in groceries)
             {
+                Console.WriteLine(grocery);
                 // Write the grocery to the console
             }
         }
@@ -55,23 +57,30 @@ namespace CSharpIntroPlayTime
             // Get a random number between 1 and 20
             //  This is the number the user is trying to guess
             int answer = new Random().Next(1, 21);
-
             for (int i = 0; i < 3; i++)
             {
                 Console.Write("Guess a number between 1 and 20: ");
                 int guess = int.Parse(Console.ReadLine());
 
-                // Add a conditional to determine if the user's guess is higher than the answer
-                //  If so, print "Too High!" to the console
-
-                // Add a conditional to determine if the user's guess is lower than the answer
-                //  If so, print "Too Low!" to the console
-
-                // When the user guesses correctly, tell them and return from the method
-                Console.WriteLine("You got it!");
-                return;
+                if (guess > answer)
+                {
+                    // Add a conditional to determine if the user's guess is higher than the answer
+                    //  If so, print "Too High!" to the console
+                    Console.WriteLine("Too High");
+                }
+                else if (guess < answer)
+                {
+                    // Add a conditional to determine if the user's guess is lower than the answer
+                    //  If so, print "Too Low!" to the console
+                    Console.WriteLine("Too Low");
+                }
+                else
+                {
+                    // When the user guesses correctly, tell them and return from the method
+                    Console.WriteLine("You got it!");
+                    return;
+                }
             }
-
             Console.WriteLine("Better luck next time...");
         }
     }
